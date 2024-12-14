@@ -6,19 +6,19 @@
     <title>DNK-Quizz</title>
     <link rel="icon" type="image/x-icon" href="quizz.png" />
     <style>
-        body { font-family: Arial, sans-serif; }
+        body { font-family: 'Times New Roman', 'Times', 'serif'; }
         .quiz-container { max-width: 600px; margin: auto; }
         .result { margin-top: 20px; }
     </style>
 </head>
-<body>
-    <CENTER><img src="quizz.png" class="clignotant" height="30%" width="20%"></a></CENTER>
+<body style="background-color: blueviolet; font-family: 'Times New Roman', Times, serif; color: antiquewhite;">
+    <marquee direction="up" behavior="scroll" scrollamount="15"><CENTER><img src="quizz.png" class="clignotant" height="30%" width="20%"></a></CENTER></marquee>
     <center>
         <div id="user-container">
             <h1>DNK-Quizz</h1>
             <h5>Veuillez entrer votre nom pour que je me souvienne de vous !</h5>
         <input type="text" id="username" placeholder="Votre nom"/><br><br><br>
-        <button id="start-button">Commencer le Quiz</button>
+        <button id="start-button" style="padding-bottom:10px; margin-bottom:10px">Commencer le Quiz</button>
     </div>
     <div id="quiz-container" style="display: none;"></div>
     <div id="score-container" style="display: none;"></div>
@@ -27,16 +27,28 @@
     <script>
         const questions = [
             { question: "Que signifie DNK ?", answers: ["Daniel Nkuma Kabamba", "Daniel Nkuma", "Djimy Nkum's Kabasele", "David Ney KAdo"], correct: 0 },
-            { question: "Quel est ma date de naissance ?", answers: ["14 Avril", "13 Mai", "10 Décembre", "8 Août"], correct: 1 },
-            { question: "Quelle est ma boisson préférée ?", answers: ["Maltina", "Turbo", "Energie Malt", "Coca-cola"], correct: 0 },
+            { question: "Dans quelle univesité ai-je décroché mon diplôme de graduat ?", answers: ["Institut Supérieure de Commerce", "Institut Supérieur de Statistique", "Université Franco Américain", "Université de Kinshasa"], correct: 0 },
+            { question: "Je parle combien de langue ?", answers: ["6", "3", "7", "5"], correct: 1 },
             { question: "Quelle est ma couleur préférée ?", answers: ["Jaune", "Noir", "Rouge", "Bleu"], correct: 1 },
-            { question: "Quel est mon surnom ?", answers: ["Prefilda", "L'Impérial", "Boss", "DNK"], correct: 1 },
-            { question: "Quel est mon deuxième Postnom ?", answers: ["Kabamba", "Prefilda", "Alonga", "Makika"], correct: 1 },
+            { question: "Quel est mon outil de travail ?", answers: ["Machine à coudre", "Ordinateur", "Tourne vice & testeur", "Marteau"], correct: 1 },
+            { question: "Quel est mon deuxième Prénom ?", answers: ["Kabamba", "Prefilda", "Alonga", "Makika"], correct: 1 },
+            { question: "Qui est mon acteur de cinéma préféré ?", answers: ["Gerard Buttler", "Jackie Chan", "Jet li", "Adskin scott"], correct: 0 },
             { question: "En quelle année ai-je décroché mon diplôme d'état ?", answers: ["2020", "2019", "2017", "2016"], correct: 1 },
             { question: "Quel est mon club préféré en europe ?", answers: ["Fc Barcelone", "Réal de Madrid", "Paris saint germain", "Inter de Milan"], correct: 0 },
+            { question: "Quel est ma date de naissance ?", answers: ["14 Avril", "13 Mai", "10 Décembre", "8 Août"], correct: 1 },
+            { question: "Quel est mon film préféré ?", answers: ["Le crocodile de Botwanga", "La chute de la Maison Blanche", "Un prince à new york", "la belle et la bête"], correct: 1 },
+            { question: "Quel est mon surnom ?", answers: ["Prefilda", "L'Impérial", "Boss", "DNK"], correct: 1 },
+            { question: "Mon Chanteur gospel préféré ?", answers: ["Mike Kalambay", "Moise Mbiye", "Jose Nzita", "Athom's Mbuma"], correct: 1 },
+            { question: "Mon Chanteur Urbain préféré ?", answers: ["Jungeli", "Dadju", "Naza", "Keblack"], correct: 1 },
+            { question: "Quelle est ma boisson préférée ?", answers: ["Maltina", "Turbo", "Energie Malt", "Coca-cola"], correct: 0 },
             { question: "Quelle est mon club préféré en Afrique ?", answers: ["T.P. Mazembe", "A.s. Vita club", "Espérence de Tunis", "Al hilal d'égypte"], correct: 1 },
-            { question: "Qui est mon acteur de cinéma préféré ?", answers: ["Gerard Buttler", "Jackie Chan", "Jet li", "Adskin scott"], correct: 0 },
-            { question: "Quel est mon film préféré ?", answers: ["Le crocodile de Botwanga", "La chute de la Maison Blanche", "Un prince à new york", "la belle et la bête"], correct: 1 }
+            { question: "Mon rappeur urbain préféré ?", answers: ["Maitre gims", "Black M", "Niska", "Ninho"], correct: 0 },
+            { question: "Quels sont mes sport préféré ?", answers: ["Judo & Basketball", "Football & Boxe", "Karaté & Tenis", "Full Contact & HandBall"], correct: 1 },
+            { question: "Mes rappeurs gospel préféré ?", answers: ["El George,David okit, Bigty & Ks bloom", "B-right, R-Mut, Gaillard jule & Benash", "Serviteur pierre, Stone, Markis & M-kay", "Bayve,Drulo,Gloire grace & Krista"], correct: 0 },
+            { question: "Dans quelle université ai-je décroché mon diplôme de licence ?", answers: ["Institut Supérieur de commerce", "Haute école de commerce", "Université libre de Kinshasa", "Académie des beaux art"], correct: 1 }
+
+
+
 
         ];
     
@@ -65,7 +77,7 @@
                 quizContainer.innerHTML = `
                     <h2>${question.question}</h2>
                     <ul>
-                        ${question.answers.map((answer, index) => `<li><button onclick="checkAnswer(${index})">${answer}</button></li>`).join('')}
+                        ${question.answers.map((answer, index) => `<li><button style="padding-bottom:10px; margin-bottom:10px;" onclick="checkAnswer(${index})">${answer}</button></li>`).join('')}
                     </ul>
                 `;
             } else {
@@ -76,9 +88,14 @@
         function checkAnswer(selectedIndex) {
             const question = questions[currentQuestionIndex];
             if (selectedIndex === question.correct) {
+                alert("Bonne réponse !");
                 score++;
-            }
-            setTimeout(showNextQuestion, 1000); // Transition vers la question suivante après 1 seconde
+            } else {
+            alert("Mauvaise réponse. La bonne réponse est : " + question.answers[question.correct]);
+        }
+    
+            
+            setTimeout(showNextQuestion, 1000); 
         }
     
         function showScore() {
@@ -89,5 +106,7 @@
         }
     
     </script>
+    <br><br><br>
+    <marquee direction="right" behavior="scroll" scrollamount="10"><h3 style="font-family: 'Times New Roman', Times, serif; color: rgb(0, 0, 0);">Resserrer les liens entre les peuples !!!</h3></marquee>
 </body>
 </html>
