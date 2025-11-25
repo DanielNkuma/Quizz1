@@ -7,6 +7,7 @@
     <link rel="icon" type="image/x-icon" href="quizz.png" />
 
     <style>
+        /* ===== RESET ===== */
         * {
             margin: 0;
             padding: 0;
@@ -24,6 +25,7 @@
             padding: 20px;
         }
 
+        /* ===== WRAPPER ===== */
         .intro-wrapper {
             width: 100%;
             max-width: 700px;
@@ -41,8 +43,10 @@
             to { opacity: 1; transform: scale(1); }
         }
 
+        /* ===== LOGO ===== */
         .logo {
             width: 160px;
+            max-width: 80%;
             animation: float 3s infinite ease-in-out;
             margin-bottom: 15px;
         }
@@ -53,6 +57,20 @@
             100% { transform: translateY(0); }
         }
 
+        /* ===== TITRES ===== */
+        h1 {
+            text-shadow: 0 0 10px #8f5bff;
+            margin-top: 10px;
+            font-size: 2.4rem;
+        }
+
+        h3 {
+            color: #ddd;
+            margin-top: 8px;
+            font-weight: 400;
+        }
+
+        /* ===== BOUTON ===== */
         .start-btn {
             background: linear-gradient(45deg, #7f2bff, #9f6bff);
             padding: 15px 35px;
@@ -62,8 +80,10 @@
             font-weight: 700;
             border: none;
             cursor: pointer;
-            transition: 0.25s;
+            transition: transform 0.25s, box-shadow 0.25s;
             margin-top: 25px;
+            display: inline-block;
+            text-decoration: none;
         }
 
         .start-btn:hover {
@@ -71,33 +91,24 @@
             box-shadow: 0 0 18px #a77cff;
         }
 
-        h1 {
-            text-shadow: 0 0 10px #8f5bff;
-            margin-top: 10px;
-            font-size: 2.4rem;
-        }
-
-        h3 { color: #ddd; }
-
+        /* ===== RESPONSIVE ===== */
         @media (max-width: 600px) {
             h1 { font-size: 1.8rem; }
+            h3 { font-size: 1rem; }
             .start-btn { font-size: 1rem; padding: 12px 28px; }
             .logo { width: 120px; }
         }
     </style>
 </head>
-<body>
 
+<body>
     <div class="intro-wrapper">
-        <img src="quizz.png" class="logo" />
+        <img src="quizz.png" class="logo" alt="Logo DNK-Quizz" />
 
         <h1>Bienvenue dans DNK-Quizz</h1>
         <h3>Appuyez pour commencer l'aventure...</h3>
 
-        <a href="Reco.html">
-            <button class="start-btn">Commencer</button>
-        </a>
+        <a href="Reco.html" class="start-btn">Commencer</a>
     </div>
-
 </body>
 </html>
