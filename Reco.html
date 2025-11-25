@@ -1,172 +1,145 @@
 <!DOCTYPE html>
 <html lang="fr">
 <head>
-<meta charset="UTF-8" />
-<meta name="viewport" content="width=device-width, initial-scale=1.0" />
-<title>DNK-Quizz</title>
-<link rel="icon" type="image/x-icon" href="quizz.png" />
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>DNK-Quizz</title>
+    <link rel="icon" type="image/x-icon" href="quizz.png" />
 
-<style>
-/* ===== RESET ===== */
-* { margin:0; padding:0; box-sizing:border-box; }
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
 
-body {
-    font-family:'Poppins', sans-serif;
-    background: radial-gradient(circle at top, #4b0aff, #15002e);
-    color:#fff;
-    min-height:100vh;
-    display:flex;
-    justify-content:center;
-    align-items:center;
-    padding:20px;
-}
+        body {
+            font-family: 'Poppins', sans-serif;
+            background: radial-gradient(circle at top, #4b0aff, #15002e);
+            color: #fff;
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 20px;
+        }
 
-/* ===== WRAPPER ===== */
-.game-wrapper {
-    width:100%;
-    max-width:800px;
-    background:rgba(0,0,0,0.45);
-    padding:25px;
-    border-radius:20px;
-    box-shadow:0 0 25px #7f2bff;
-    backdrop-filter: blur(7px);
-    animation: fadeIn 1s ease;
-    text-align:center;
-}
+        .game-wrapper {
+            width: 100%;
+            max-width: 800px;
+            background: rgba(0, 0, 0, 0.45);
+            padding: 25px;
+            border-radius: 20px;
+            box-shadow: 0 0 25px #7f2bff;
+            backdrop-filter: blur(7px);
+            animation: fadeIn 1s ease;
+            text-align: center;
+        }
 
-@keyframes fadeIn {
-    from {opacity:0; transform:scale(0.95);}
-    to {opacity:1; transform:scale(1);}
-}
+        @keyframes fadeIn {
+            from { opacity: 0; transform: scale(0.95); }
+            to { opacity: 1; transform: scale(1); }
+        }
 
-/* ===== LOGO ===== */
-.logo {
-    width:120px;
-    max-width:80%;
-    animation: float 3s infinite ease-in-out;
-    margin-bottom:15px;
-}
+        h1 { text-shadow: 0 0 10px #8f5bff; font-size: 2.3rem; margin-bottom: 10px; font-weight: 700; }
+        h5, h3 { color: #ddd; }
 
-@keyframes float {
-    0% { transform:translateY(0);}
-    50% { transform:translateY(-12px);}
-    100% { transform:translateY(0);}
-}
+        input[type="text"] {
+            width: 80%;
+            max-width: 350px;
+            padding: 12px;
+            border: 2px solid #8f5bff;
+            border-radius: 10px;
+            font-size: 1rem;
+            margin-top: 12px;
+            text-align: center;
+        }
 
-/* ===== TITRES ===== */
-h1 { text-shadow:0 0 10px #8f5bff; font-size:2.3rem; margin-bottom:10px; font-weight:700; }
-h5 { color:#ddd; font-weight:400; margin-top:8px; }
+        button {
+            background: linear-gradient(45deg, #7f2bff, #9f5bff);
+            border: none;
+            padding: 14px 25px;
+            margin-top: 25px;
+            border-radius: 12px;
+            color: white;
+            font-weight: bold;
+            cursor: pointer;
+            transition: 0.2s;
+            font-size: 1.1rem;
+        }
 
-/* ===== INPUT & BOUTON ===== */
-input[type="text"] {
-    width:80%;
-    max-width:350px;
-    padding:12px;
-    border:2px solid #8f5bff;
-    border-radius:10px;
-    font-size:1rem;
-    margin-top:12px;
-    text-align:center;
-}
+        button:hover { transform: scale(1.06); box-shadow: 0 0 15px #9f6bff; }
 
-button {
-    background:linear-gradient(45deg,#7f2bff,#9f5bff);
-    border:none;
-    padding:14px 25px;
-    margin-top:25px;
-    border-radius:12px;
-    color:white;
-    font-weight:bold;
-    cursor:pointer;
-    transition:0.2s;
-    font-size:1.1rem;
-}
+        ul { list-style: none; margin-top: 20px; }
+        li { margin: 12px 0; }
 
-button:hover { transform:scale(1.06); box-shadow:0 0 15px #9f6bff; }
+        .answer-btn {
+            width: 100%;
+            max-width: 350px;
+            padding: 12px;
+            background: rgba(255, 255, 255, 0.12);
+            border: 2px solid #8f5bff;
+            border-radius: 15px;
+            color: #fff;
+            cursor: pointer;
+            transition: 0.25s;
+        }
+        .answer-btn:hover { background: #8f5bff; }
 
-/* ===== QUIZ ===== */
-ul { list-style:none; margin-top:20px; }
-li { margin:12px 0; }
+        .logo {
+            width: 120px;
+            animation: float 3s infinite ease-in-out;
+            margin-bottom: 15px;
+        }
+        @keyframes float {
+            0% { transform: translateY(0); }
+            50% { transform: translateY(-12px); }
+            100% { transform: translateY(0); }
+        }
 
-.answer-btn {
-    width:100%;
-    max-width:350px;
-    padding:12px;
-    background:rgba(255,255,255,0.12);
-    border:2px solid #8f5bff;
-    border-radius:15px;
-    color:#fff;
-    cursor:pointer;
-    transition:0.25s;
-}
+        /* Effets correct */
+        .correct {
+            background: #00c853 !important;
+            border-color: #00ff80 !important;
+            transform: scale(1.1);
+            animation: pop 0.4s ease;
+        }
+        @keyframes pop { 0% { transform: scale(1); } 50% { transform: scale(1.2); } 100% { transform: scale(1.05); } }
 
-.answer-btn:hover { background:#8f5bff; }
+        /* Effet mauvaise réponse */
+        .wrong {
+            background: #d50000 !important;
+            border-color: #ff6b6b !important;
+            animation: shake 0.45s ease;
+        }
+        @keyframes shake { 0% { transform: translateX(0); } 25% { transform: translateX(-8px); } 50% { transform: translateX(8px); } 75% { transform: translateX(-8px); } 100% { transform: translateX(0); } }
 
-/* ===== Effets correct et mauvais ===== */
-.correct {
-    background:#00c853 !important;
-    border-color:#00ff80 !important;
-    transform:scale(1.1);
-    animation: pop 0.4s ease;
-}
+        /* Confettis */
+        .confetti {
+            position: fixed;
+            width: 10px;
+            height: 10px;
+            top: -10px;
+            background: #00ff80;
+            opacity: 0.9;
+            animation: fall 1s linear forwards;
+        }
+        @keyframes fall { to { transform: translateY(100vh) rotate(360deg); opacity: 0; } }
 
-@keyframes pop {
-    0% { transform:scale(1); }
-    50% { transform:scale(1.2); }
-    100% { transform:scale(1.05); }
-}
-
-.wrong {
-    background:#d50000 !important;
-    border-color:#ff6b6b !important;
-    animation: shake 0.45s ease;
-}
-
-@keyframes shake {
-    0% { transform:translateX(0); }
-    25% { transform:translateX(-8px); }
-    50% { transform:translateX(8px); }
-    75% { transform:translateX(-8px); }
-    100% { transform:translateX(0); }
-}
-
-/* ===== Confettis ===== */
-.confetti {
-    position:fixed;
-    width:10px;
-    height:10px;
-    top:-10px;
-    background:#00ff80;
-    opacity:0.9;
-    animation:fall 1s linear forwards;
-}
-
-@keyframes fall {
-    to { transform:translateY(100vh) rotate(360deg); opacity:0; }
-}
-
-/* ===== RESPONSIVE ===== */
-@media(max-width:600px){
-    h1 { font-size:1.7rem; }
-    h5 { font-size:1rem; }
-    .answer-btn { font-size:0.9rem; }
-    button { font-size:1rem; padding:12px 20px; }
-}
-</style>
+        @media (max-width: 600px) {
+            h1 { font-size: 1.7rem; }
+            .answer-btn { font-size: 0.9rem; }
+        }
+    </style>
 </head>
 
 <body>
 
 <div class="game-wrapper">
-
-    <img src="quizz.png" class="logo" alt="Logo DNK">
+    <img src="quizz.png" class="logo">
 
     <div id="user-container">
         <h1>DNK - QUIZZ</h1>
         <h5>Veuillez entrer votre nom pour commencer</h5>
         <input type="text" id="username" placeholder="Votre nom">
         <br>
-        <button id="start-button">Commencer le Quiz</button>
+        <button type="button" id="start-button">Commencer le Quiz</button>
     </div>
 
     <div id="quiz-container" style="display:none;"></div>
@@ -174,80 +147,86 @@ li { margin:12px 0; }
 </div>
 
 <script>
-const questions = [
-    { question:"Que signifie DNK ?", answers:["Daniel Nkuma Kabamba","Daniel Nkuma","Djimy Nkum's Kabasele","David Ney KAdo"], correct:0 },
-    { question:"Dans quelle université ai-je décroché mon diplôme de graduat ?", answers:["Institut Supérieure de Commerce","Institut Supérieur de Statistique","Université Franco Américain","Université de Kinshasa"], correct:0 },
-    { question:"Je parle combien de langue ?", answers:["6","3","7","5"], correct:1 },
-    { question:"Quelle est ma couleur préférée ?", answers:["Jaune","Noir","Rouge","Bleu"], correct:1 },
-    { question:"Quel est mon outil de travail ?", answers:["Machine à coudre","Ordinateur","Tourne vice & testeur","Marteau"], correct:1 },
-    { question:"Quel est mon deuxième prénom ?", answers:["Kabamba","Prefilda","Alonga","Makika"], correct:1 },
-    { question:"Acteur préféré ?", answers:["Gerard Buttler","Jackie Chan","Jet li","Adskin scott"], correct:0 },
-    { question:"Année diplôme d'état ?", answers:["2020","2019","2017","2016"], correct:1 },
-    { question:"Club préféré en Europe ?", answers:["Fc Barcelone","Réal de Madrid","PSG","Inter Milan"], correct:0 },
-    { question:"Date de naissance ?", answers:["14 Avril","13 Mai","10 Décembre","8 Août"], correct:1 },
-    { question:"Film préféré ?", answers:["Crocodile de Botwanga","La chute de la Maison Blanche","Un prince à New York","La belle et la bête"], correct:1 },
-    { question:"Surnom ?", answers:["Prefilda","L'Impérial","Boss","DNK"], correct:1 },
-    { question:"Chanteur gospel préféré ?", answers:["Mike Kalambay","Moise Mbiye","Jose Nzita","Athom's Mbuma"], correct:1 },
-    { question:"Chanteur urbain préféré ?", answers:["Jungeli","Dadju","Naza","Keblack"], correct:1 },
-    { question:"Boisson préférée ?", answers:["Maltina","Turbo","Energie Malt","Coca-cola"], correct:0 },
-    { question:"Club préféré en Afrique ?", answers:["T.P. Mazembe","A.s. Vita club","Espérence Tunis","Al Hilal"], correct:1 },
-    { question:"Rappeur urbain préféré ?", answers:["Maitre gims","Black M","Niska","Ninho"], correct:0 },
-    { question:"Sports préférés ?", answers:["Judo & Basketball","Football & Boxe","Karaté & Tenis","Full Contact & HandBall"], correct:1 },
-    { question:"Rappeurs gospel préférés ?", answers:["El George,David okit, Bigty & Ks bloom","B-right, R-Mut, Gaillard jule & Benash","Serviteur pierre, Stone, Markis & M-kay","Bayve, Drulo, Gloire grace & Krista"], correct:0 },
-    { question:"Université diplôme de licence ?", answers:["Institut Supérieur de commerce","Haute école de commerce","Université libre de Kinshasa","Académie des beaux arts"], correct:1 },
-    { question:"DNK préfère coder à quelle heure ?", answers:["00h-3h","9h du matin","16h","Jamais, il dors 😭"], correct:0 },
-    { question:"DNK est connu pour être ?", answers:["Toujours calme","Toujours en train d’aider les gens","Toujours en train de manger","Toujours en voyage"], correct:1 },
-    { question:"La phrase favorite de DNK ?", answers:["On avance !","Laisse tomber…","Soki ezali te, tika !","C’est compliqué frère…"], correct:0 },
-    { question:"DNK préfère quel type de projets ?", answers:["Applications complexes","Sites simples","Jeux vidéos","Bots automatiques"], correct:0 },
-    { question:"DNK dans un groupe WhatsApp c’est :", answers:["Bavard","Silencieux mais efficace","Jamais en ligne","Le premier à envoyer des memes"], correct:0 }
-];
+    const questions = [
+        { question: "Que signifie DNK ?", answers: ["Daniel Nkuma Kabamba", "Daniel Nkuma", "Djimy Nkum's Kabasele", "David Ney KAdo"], correct: 0 },
+        { question: "Dans quelle université ai-je décroché mon diplôme de graduat ?", answers: ["Institut Supérieure de Commerce", "Institut Supérieur de Statistique", "Université Franco Américain", "Université de Kinshasa"], correct: 0 },
+        { question: "Je parle combien de langue ?", answers: ["6", "3", "7", "5"], correct: 1 },
+        { question: "Quelle est ma couleur préférée ?", answers: ["Jaune", "Noir", "Rouge", "Bleu"], correct: 1 },
+        { question: "Quel est mon outil de travail ?", answers: ["Machine à coudre", "Ordinateur", "Tourne vice & testeur", "Marteau"], correct: 1 },
+        { question: "Quel est mon deuxième prénom ?", answers: ["Kabamba", "Prefilda", "Alonga", "Makika"], correct: 1 },
+        { question: "Acteur préféré ?", answers: ["Gerard Buttler", "Jackie Chan", "Jet li", "Adskin scott"], correct: 0 },
+        { question: "Année diplôme d'état ?", answers: ["2020", "2019", "2017", "2016"], correct: 1 },
+        { question: "Club préféré en Europe ?", answers: ["Fc Barcelone", "Réal de Madrid", "PSG", "Inter Milan"], correct: 0 },
+        { question: "Date de naissance ?", answers: ["14 Avril", "13 Mai", "10 Décembre", "8 Août"], correct: 1 },
+        { question: "Film préféré ?", answers: ["Crocodile de Botwanga", "La chute de la Maison Blanche", "Un prince à New York", "La belle et la bête"], correct: 1 },
+        { question: "Surnom ?", answers: ["Prefilda", "L'Impérial", "Boss", "DNK"], correct: 1 },
+        { question: "Chanteur gospel préféré ?", answers: ["Mike Kalambay", "Moise Mbiye", "Jose Nzita", "Athom's Mbuma"], correct: 1 },
+        { question: "Chanteur urbain préféré ?", answers: ["Jungeli", "Dadju", "Naza", "Keblack"], correct: 1 },
+        { question: "Boisson préférée ?", answers: ["Maltina", "Turbo", "Energie Malt", "Coca-cola"], correct: 0 },
+        { question: "Club préféré en Afrique ?", answers: ["T.P. Mazembe", "A.s. Vita club", "Espérence Tunis", "Al Hilal"], correct: 1 },
+        { question: "Rappeur urbain préféré ?", answers: ["Maitre gims", "Black M", "Niska", "Ninho"], correct: 0 },
+        { question: "Sports préférés ?", answers: ["Judo & Basketball", "Football & Boxe", "Karaté & Tenis", "Full Contact & HandBall"], correct: 1 },
+        { question: "Rappeurs gospel préférés ?", answers: ["El George,David okit, Bigty & Ks bloom", "B-right, R-Mut, Gaillard jule & Benash", "Serviteur pierre, Stone, Markis & M-kay", "Bayve, Drulo, Gloire grace & Krista"], correct: 0 },
+        { question: "Université diplôme de licence ?", answers: ["Institut Supérieur de commerce", "Haute école de commerce", "Université libre de Kinshasa", "Académie des beaux arts"], correct: 1 },
+        { question: "DNK préfère coder à quelle heure ?", answers: ["00h-3h", "9h du matin", "16h", "Jamais, il dors 😭"], correct: 0 },
+        { question: "DNK est connu pour être ?", answers: ["Toujours calme", "Toujours en train d’aider les gens", "Toujours en train de manger", "Toujours en voyage"], correct: 1 },
+        { question: "La phrase favorite de DNK ?", answers: ["On avance !", "Laisse tomber…", "Soki ezali te, tika !", "C’est compliqué frère…"], correct: 0 },
+        { question: "DNK préfère quel type de projets ?", answers: ["Applications complexes", "Sites simples", "Jeux vidéos", "Bots automatiques"], correct: 0 },
+        { question: "DNK dans un groupe WhatsApp c’est :", answers: ["Bavard", "Silencieux mais efficace", "Jamais en ligne", "Le premier à envoyer des memes"], correct: 0 }
+    ];
 
-let current=0, score=0, username="";
+    let current = 0;
+    let score = 0;
+    let username = "";
 
-document.getElementById("start-button").onclick = () => {
-    username=document.getElementById("username").value.trim();
-    if(!username) return alert("Veuillez entrer votre nom !");
-    alert("Bienvenue "+username+" 🎉\nPrépare-toi, DNK veut voir ton niveau 😎🔥");
-    document.getElementById("user-container").style.display="none";
-    document.getElementById("quiz-container").style.display="block";
-    showQuestion();
-};
+    document.getElementById("start-button").onclick = () => {
+        username = document.getElementById("username").value.trim();
+        if (!username) return alert("Veuillez entrer votre nom !");
+        alert("Bienvenue " + username + " 🎉\nPrépare-toi, DNK veut voir ton niveau 😎🔥");
+        document.getElementById("user-container").style.display = "none";
+        document.getElementById("quiz-container").style.display = "block";
+        showQuestion();
+    };
 
-function showQuestion(){
-    if(current>=questions.length) return finish();
-    const q=questions[current];
-    document.getElementById("quiz-container").innerHTML=`
-        <h2>${q.question}</h2>
-        <ul>
-        ${q.answers.map((a,i)=>`<li><button class='answer-btn' onclick='check(${i}, this)'>${a}</button></li>`).join('')}
-        </ul>`;
-}
-
-function launchConfetti(){
-    for(let i=0;i<20;i++){
-        let c=document.createElement("div");
-        c.classList.add("confetti");
-        c.style.left=Math.random()*100+"vw";
-        document.body.appendChild(c);
-        setTimeout(()=>c.remove(),1000);
+    function showQuestion() {
+        if (current >= questions.length) return finish();
+        const q = questions[current];
+        document.getElementById("quiz-container").innerHTML = `
+            <h2>${q.question}</h2>
+            <ul>
+                ${q.answers.map((a, i) => `<li><button type="button" class='answer-btn' onclick='check(${i}, this)'>${a}</button></li>`).join('')}
+            </ul>`;
     }
-}
 
-function check(i,btn){
-    const correct=questions[current].correct;
-    if(i===correct){ btn.classList.add("correct"); score++; launchConfetti(); }
-    else{ btn.classList.add("wrong"); }
-    document.querySelectorAll(".answer-btn").forEach(b=>b.disabled=true);
-    setTimeout(()=>{ current++; showQuestion(); },800);
-}
+    function launchConfetti() {
+        for (let i = 0; i < 20; i++) {
+            let c = document.createElement("div");
+            c.classList.add("confetti");
+            c.style.left = Math.random() * 100 + "vw";
+            document.body.appendChild(c);
+            setTimeout(() => c.remove(), 1000);
+        }
+    }
 
-function finish(){
-    document.getElementById("quiz-container").style.display="none";
-    const div=document.getElementById("score-container");
-    div.style.display="block";
-    div.innerHTML=`<h2>${username}, votre score est de ${score} / ${questions.length}.</h2><br>
-    <h3>Faites une capture et envoyez à DNK.</h3>`;
-}
+    function check(i, btn) {
+        const correct = questions[current].correct;
+        if (i === correct) {
+            btn.classList.add("correct");
+            score++;
+            launchConfetti();
+        } else {
+            btn.classList.add("wrong");
+        }
+        document.querySelectorAll(".answer-btn").forEach(b => b.disabled = true);
+        setTimeout(() => { current++; showQuestion(); }, 800);
+    }
+
+    function finish() {
+        document.getElementById("quiz-container").style.display = "none";
+        const div = document.getElementById("score-container");
+        div.style.display = "block";
+        div.innerHTML = `<h2>${username}, votre score est de ${score} / ${questions.length}.</h2><br><h3>Faites une capture et envoyez à DNK.</h3>`;
+    }
 </script>
 
 </body>
